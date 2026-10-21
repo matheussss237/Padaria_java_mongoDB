@@ -106,3 +106,6 @@
   
   /* Utilitárias */
   .text-center{text-align:center}
+/* Mensagens da lista e saudação */
+.products-grid .vazio{list-style:none;color:var(--muted);text-align:center;grid-column:1/-1}
+.saudacao{font-weight:600;color:var(--accent-dark)}

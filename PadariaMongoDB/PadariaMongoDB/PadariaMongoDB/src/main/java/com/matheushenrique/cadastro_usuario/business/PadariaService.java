@@ -1,8 +1,11 @@
 package com.matheushenrique.cadastro_usuario.business;
 
+import com.matheushenrique.cadastro_usuario.exceptions.ResourceNotFoundException;
 import com.matheushenrique.cadastro_usuario.infrastructure.entitys.Padaria;
 import com.matheushenrique.cadastro_usuario.infrastructure.repository.PadariaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PadariaService {
@@ -13,30 +16,40 @@ public class PadariaService {
         this.repository = repository;
     }
 
-    public void cadastrarProduto(Padaria padaria) {
-        repository.save(padaria); // Mongo usa só save
+    public Padaria cadastrarProduto(Padaria padaria) {
+        padaria.setId(null);
+        return repository.save(padaria);
     }
 
-    public Padaria buscarProdutoPorId(String id) { // ID como String
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+    public List<Padaria> listarProdutos() {
+        return repository.findAll();
     }
 
-    public void deletarProdutoPorId(String id) { // ID como String
+    public Padaria buscarProdutoPorId(String id) {
+        return repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Produto não encontrado")
+        );
+    }
+
+    public void deletarProdutoPorId(String id) {
+        buscarProdutoPorId(id);
         repository.deleteById(id);
     }
 
-    public void atualizarProdutoPorId(String id, Padaria padaria) {
-        Padaria padariaEntity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-
+    public Padaria atualizarProdutoPorId(String id, Padaria padaria) {
+        Padaria padariaEntity = buscarProdutoPorId(id);
         Padaria produtoAtualizado = Padaria.builder()
-                .id(padariaEntity.getId()) // mantém mesmo ID do Mongo
-                .nome(padaria.getNome() != null ? padaria.getNome() : padariaEntity.getNome())
-                .preco(padaria.getPreco() != null ? padaria.getPreco() : padariaEntity.getPreco())
-                .build();
-
-        repository.save(produtoAtualizado); // Mongo usa save
+                .id(padariaEntity.getId())
+                .nome(padaria.getNome() != null ? padaria.getNome() :
+                        padariaEntity.getNome())
+                .preco(padaria.getPreco() != null ? padaria.getPreco() :
+                        padariaEntity.getPreco())
+                .descricao(padaria.getDescricao() != null ? padaria.getDescricao() :
+                        padariaEntity.getDescricao())
+                .categoria(padaria.getCategoria() != null ? padaria.getCategoria() :
+                        padariaEntity.getCategoria())
+                .imagem(padaria.getImagem() != null ? padaria.getImagem() :
+                        padariaEntity.getImagem()).build();
+        return repository.save(produtoAtualizado);
     }
 }
-

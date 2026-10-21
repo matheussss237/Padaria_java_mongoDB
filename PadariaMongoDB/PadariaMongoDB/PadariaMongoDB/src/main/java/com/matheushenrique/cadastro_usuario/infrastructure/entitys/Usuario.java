@@ -35,4 +35,3 @@ public class Usuario {
     @JsonProperty
     private String telefone;
 }
-

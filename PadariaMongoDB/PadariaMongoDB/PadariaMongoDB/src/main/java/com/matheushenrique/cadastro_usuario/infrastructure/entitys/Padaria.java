@@ -1,10 +1,8 @@
 package com.matheushenrique.cadastro_usuario.infrastructure.entitys;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
@@ -21,5 +19,13 @@ public class Padaria {
     private String nome;
 
     private Double preco;
+
+    private String descricao;
+
+    // paes, doces, salgados ou bebidas (usado no filtro da página de produtos)
+    private String categoria;
+
+    // caminho da imagem dentro de /static (ex: img/Sonho.jpg)
+    private String imagem;
 
 }

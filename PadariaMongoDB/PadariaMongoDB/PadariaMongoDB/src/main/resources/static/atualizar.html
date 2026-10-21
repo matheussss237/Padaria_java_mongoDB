@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Cadastro</title>
-    <link rel="stylesheet" href="../static/css/usu.css">
+    <title>Minha Conta</title>
+    <link rel="stylesheet" href="css/atualizar.css">
 </head>
 <body>
 
@@ -13,30 +13,38 @@
     <h2>Atualizar Cadastro</h2>
 
     <!-- Formulário de atualização -->
-    <form action="atualizar.html" method="post">
-        <label for="usuario">Usuário:</label>
-        <input type="text" id="usuario" name="usuario" value="usuarioAtual" required>
+    <form id="formAtualizar">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" readonly>
 
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="email@exemplo.com" required>
+        <input type="email" id="email" name="email">
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" value="senhaAtual" required>
+        <label for="senha">Nova senha (opcional):</label>
+        <input type="password" id="senha" name="senha" minlength="6" placeholder="Deixe em branco para manter">
 
         <label for="data_nascimento">Data de Nascimento:</label>
-        <input type="date" id="data_nascimento" name="data_nascimento" value="2000-01-01" required>
+        <input type="date" id="data_nascimento" name="data_nascimento">
 
         <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" value="11999999999" required pattern="[0-9]{10,11}" title="Digite um número válido">
+        <input type="tel" id="telefone" name="telefone" pattern="[0-9]{10,11}" title="Digite um número válido">
 
         <button type="submit" class="btn btn-login">Atualizar</button>
     </form>
 
     <!-- Botão de exclusão -->
-    <form action="excluir.html" method="post" onsubmit="return confirm('Tem certeza que deseja excluir sua conta?');">
-        <button type="submit" class="btn btn-cadastro">Excluir Usuário</button>
-    </form>
+    <button type="button" id="btnExcluir" class="btn btn-cadastro">Excluir Usuário</button>
+
+    <h3>Minhas compras</h3>
+    <ul id="minhasCompras" class="minhas-compras"><li>Carregando...</li></ul>
+
+    <p><a href="produtos.html">← Voltar para Produtos</a> | <a href="#" onclick="sair(); return false;">Sair</a></p>
 </div>
 
+<script src="js/api.js"></script>
+<script src="js/usuarios.js"></script>
 </body>
 </html>

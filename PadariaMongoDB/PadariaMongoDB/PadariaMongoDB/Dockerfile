@@ -11,7 +11,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Imagem de produção
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre
 
 # Define o diretório de trabalho
 WORKDIR /app

@@ -132,3 +132,17 @@ button:hover {
     font-size: 14px;
   }
 }
+
+/* Campo de senha e link para o login */
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.form-container .link-login {
+  text-align: center;
+  margin: 0;
+}
