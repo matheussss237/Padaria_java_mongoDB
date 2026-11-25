@@ -76,4 +76,4 @@ No Windows, use `mvnw.cmd spring-boot:run`, ou abra a pasta no IntelliJ IDEA e r
 
 ---
 
-Desenvolvido por **Matheus Henrique** · [Portfólio](https://matheussss237.github.io/Gsap/) · [LinkedIn](https://linkedin.com/in/matheushenriquem)
+Desenvolvido por **Matheus Henrique** · [Portfólio](https://matheussss237.github.io/Portfolio/) · [LinkedIn](https://linkedin.com/in/matheushenriquem)
